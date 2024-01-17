@@ -62,6 +62,65 @@ npm run start
 
 Open http://localhost:3000 in your browser, and connect to an Agent!
 
+## Passing Contact Attributes
+
+Using the JWT setup, you can also pass contact attributes to your flow ([documentation](https://docs.aws.amazon.com/connect/latest/adminguide/pass-contact-attributes-chat.html))
+
+## Step 1. Update `public/index.html` to pass data
+
+If you desire to pass data for contactAttributes from your website, update the Hosted Widget script snippet: 
+
+```html
+<script type="text/javascript">
+  (/* ... */)(window, document, 'amazon_connect', '<widgetId_REPLACE_ME>');
+
+  amazon_connect('authenticate', function(callback) {
+    const widgetId = '<widgetId_REPLACE_ME>';
+    const data = {
+
+    };
+
+    fetch(`/token?widgetId=${widgetId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(res => res.json())
+      .then(data => {
+        callback(data.data); // the encoded token
+      });
+  });
+</script>
+```
+
+## Step 2. Update `app.js` logic
+
+Pass data in the `attributes` key in the JWT payload
+
+```diff
+const payload = {
+  sub: widgetId,
+  iat: DateTime.utc().toSeconds(),
+  exp: DateTime.utc().plus(durationInSeconds).toSeconds(),
++ attributes: { verificationCode: 'foobar' }
+};
+
+const header = {
+  typ: 'JWT',
+  alg: JWT_ALGORITHM,
+};
+
+const encoded_token = jwt.sign(payload, MY_SECRET, { algorithm: JWT_ALGORITHM, header });
+```
+
+## Step 3. View the Contact Attributes in a Flow
+
+- 3a. Download the [test-contractAttribute-flow.json](./exports/test-contractAttribute-flow.json) file
+- 3b. Import the Contact Flow ([documentation](https://docs.aws.amazon.com/connect/latest/adminguide/contact-flow-import-export.html))
+- 3c. Update your widget settings to use the new Contact Attributes flow ([documentation](https://docs.aws.amazon.com/connect/latest/adminguide/add-chat-to-website.html#customize-chat-widget))
+
 ---
 
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fspenlep-amzn%2Famazon-connect-hosted-widget-jwt-testing-setup-nodejs&label=VIEWS&countColor=%23263759)

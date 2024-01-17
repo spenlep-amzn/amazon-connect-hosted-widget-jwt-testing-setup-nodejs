@@ -22,6 +22,7 @@ app.get('/token', (req, res) => {
     sub: widgetId,
     iat: DateTime.utc().toSeconds(),
     exp: DateTime.utc().plus(durationInSeconds).toSeconds(),
+    attributes: { verificationCode: 'foobar' } // OPTIONAL - docs: https://docs.aws.amazon.com/connect/latest/adminguide/pass-contact-attributes-chat.html
   };
 
   const header = {
