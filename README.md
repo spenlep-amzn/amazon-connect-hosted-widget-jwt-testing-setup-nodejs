@@ -66,7 +66,7 @@ Open http://localhost:3000 in your browser, and connect to an Agent!
 
 Using the JWT setup, you can also pass contact attributes to your flow ([documentation](https://docs.aws.amazon.com/connect/latest/adminguide/pass-contact-attributes-chat.html))
 
-## Step 1. Update `public/index.html` to pass data
+### Step 1. Update `public/index.html` to pass data
 
 If you desire to pass data for contactAttributes from your website, update the Hosted Widget script snippet: 
 
@@ -95,7 +95,7 @@ If you desire to pass data for contactAttributes from your website, update the H
 </script>
 ```
 
-## Step 2. Update `app.js` logic
+### Step 2. Update `app.js` logic
 
 Pass data in the `attributes` key in the JWT payload
 
