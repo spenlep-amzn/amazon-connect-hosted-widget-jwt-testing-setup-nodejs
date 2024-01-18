@@ -121,6 +121,8 @@ const encoded_token = jwt.sign(payload, MY_SECRET, { algorithm: JWT_ALGORITHM, h
 - 3b. Import the Contact Flow ([documentation](https://docs.aws.amazon.com/connect/latest/adminguide/contact-flow-import-export.html))
 - 3c. Update your widget settings to use the new Contact Attributes flow ([documentation](https://docs.aws.amazon.com/connect/latest/adminguide/add-chat-to-website.html#customize-chat-widget))
 
+<img width="775" alt="Screenshot 2024-01-17 at 3 57 16 PM" src="https://github.com/spenlep-amzn/amazon-connect-hosted-widget-jwt-testing-setup-nodejs/assets/150714337/596e3fc3-7039-4f69-a2a9-6be32e9922cb">
+
 ---
 
 ![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fspenlep-amzn%2Famazon-connect-hosted-widget-jwt-testing-setup-nodejs&label=VIEWS&countColor=%23263759)
