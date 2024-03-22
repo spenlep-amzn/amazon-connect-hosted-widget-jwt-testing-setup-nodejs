@@ -104,7 +104,7 @@ const payload = {
   sub: widgetId,
   iat: DateTime.utc().toSeconds(),
   exp: DateTime.utc().plus(durationInSeconds).toSeconds(),
-+ attributes: { verificationCode: 'foobar' }
++ attributes: { Foo: 'bar' }
 };
 
 const header = {
@@ -116,6 +116,8 @@ const encoded_token = jwt.sign(payload, MY_SECRET, { algorithm: JWT_ALGORITHM, h
 ```
 
 ## Step 3. View the Contact Attributes in a Flow
+
+You can access these attributes in the "UserDefined" namespace, example `$Attrbitues.Foo`
 
 - 3a. Download the [test-contractAttribute-flow.json](./exports/test-contractAttribute-flow.json) file
 - 3b. Import the Contact Flow ([documentation](https://docs.aws.amazon.com/connect/latest/adminguide/contact-flow-import-export.html))
